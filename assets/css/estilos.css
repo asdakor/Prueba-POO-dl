@@ -43,10 +43,3 @@ body {
 .participante {
   max-width: 30%;
 }
-
-/* Modal */
-
-.modal-dialog{
-    max-width: 85% !important;
-}
-
