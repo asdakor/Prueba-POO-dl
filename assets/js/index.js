@@ -16,9 +16,7 @@ let animales = [];
     }
 })();
 
-let animalesGuardados = [];
-let cont = 0
-
+/// preview dinamica
 const preview = document.querySelector('#preview')
 const listAnimal = document.querySelector('#animal')
 listAnimal.addEventListener('change', () => {
@@ -44,6 +42,9 @@ listAnimal.addEventListener('change', () => {
     }
 })
 
+///Formulario + almacenar animales
+let animalesGuardados = [];
+let cont = 0
 const contenidoAnimales = document.querySelector('#ContenidoAnimales')
 const formulario = document.querySelector('#formulario')
 formulario.addEventListener('submit', (evento) => {
@@ -52,6 +53,42 @@ formulario.addEventListener('submit', (evento) => {
     const edad = document.querySelector('#edad').value
     const comentarios = document.querySelector('#comentarios').value
     const animalEncontrado = animales.animales.find((item) => item.name.toLowerCase() === animal)
+    ///VALIDAR CAMPOS LLENOS DEL FORMULARIO
+    let validado = true
+    if(comentarios.trim() === ""){
+        console.log('este campo no puede ir vacio')
+        document.querySelector('#errorComent').innerText = 'Este campo no puede ir vacio'
+        if(validado === true){
+            validado = !validado
+        }
+        return
+    }else{document.querySelector('#errorComent').innerText = ''}
+    if(animal.trim() === "" || animal === null || animal === 'seleccione un animal'){
+        console.log('este campo no puede ir vacio')
+        document.querySelector('#errorNombre').innerText = 'Por favor, selecciona una opcion'
+        if(validado === true){
+            validado = !validado
+        }
+        return
+    }else{
+        document.querySelector('#errorNombre').innerText = ''
+    }
+    if(edad.trim() === "" || edad === null || edad === 'Seleccione un rango de años'){
+        console.log('este campo no puede ir vacio')
+        document.querySelector('#errorEdad').innerText = 'Por favor, selecciona una opcion'
+        if(validado === true){
+            validado = !validado
+        }
+        return
+    }else{
+        document.querySelector('#errorEdad').innerText = ''
+    }
+
+
+
+
+
+
     switch (animal) {
         case 'lobo':
             const lobo = new Lobo(animalEncontrado.name, edad, animalEncontrado.imagen, comentarios, animalEncontrado.sonido)
@@ -78,7 +115,6 @@ formulario.addEventListener('submit', (evento) => {
           </div>`
             animalesGuardados.push(lobo)
             cont++
-            console.log(lobo)
             break
         case 'leon':
             const leon = new Leon(animalEncontrado.name, edad, animalEncontrado.imagen, comentarios, animalEncontrado.sonido)
@@ -105,7 +141,6 @@ formulario.addEventListener('submit', (evento) => {
           </div>`
             animalesGuardados.push(leon)
             cont++
-            console.log(leon)
             break
         case 'serpiente':
             const serpiente = new Serpiente(animalEncontrado.name, edad, animalEncontrado.imagen, comentarios, animalEncontrado.sonido)
@@ -132,7 +167,6 @@ formulario.addEventListener('submit', (evento) => {
           </div>`
             animalesGuardados.push(serpiente)
             cont++
-            console.log(serpiente)
             break
         case 'aguila':
             const aguila = new Aguila(animalEncontrado.name, edad, animalEncontrado.imagen, comentarios, animalEncontrado.sonido)
@@ -159,7 +193,6 @@ formulario.addEventListener('submit', (evento) => {
           </div>`
             animalesGuardados.push(aguila)
             cont++
-            console.log(aguila)
             break
         case 'oso':
             const oso = new Oso(animalEncontrado.name, edad, animalEncontrado.imagen, comentarios, animalEncontrado.sonido)
@@ -186,11 +219,7 @@ formulario.addEventListener('submit', (evento) => {
           </div>`
             animalesGuardados.push(oso)
             cont++
-            console.log(oso)
             break
-
     }
-    console.log(animalesGuardados)
-    console.log('presionaste el boton')
 })
 console.log(animales)
