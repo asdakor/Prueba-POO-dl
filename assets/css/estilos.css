@@ -20,12 +20,14 @@ body {
   background-position: top;
   background-size: contain;
   background-repeat: no-repeat;
+  text-align: center;
 }
 
 
 /* Tabla de Participantes */
 
 #Animales {
+  text-align: center;
   height: 100%;
   background: #f0f0f0;
 }
